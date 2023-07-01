@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Task Keeper</title>
+    {%endif%}
+    <style>
+        ul {
+            display: flex;
+            
+        }
+        ul > a {
+            padding: 0 20px;
+            list-style-type: none;
+            text-decoration: none;
+        }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <a href="{{ url_for('home') }}"><li>Home</li></a>
+        <a href="{{ url_for('about') }}"><li>about</li></a>
+        <a href="{{ url_for('login') }}"><li>login</li></a>
+        <a href="{{ url_for('register') }}"><li>register</li></a>
+      </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
