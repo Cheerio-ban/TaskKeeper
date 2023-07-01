@@ -5,7 +5,7 @@
     <title>{{ title }}</title>
     {% else %}
     <title>Task Keeper</title>
-    {%endif%}
+    {% endif %}
     <style>
         ul {
             display: flex;
@@ -27,6 +27,15 @@
         <a href="{{ url_for('register') }}"><li>register</li></a>
       </ul>
     </nav>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     {% block content %}
     {% endblock %}
   </body>

@@ -1,4 +1,5 @@
-from flask import url_for, render_template
+from flask import url_for, render_template, flash, redirect
+from app.forms import RegistrationForm, LoginForm
 from app import app
 
 
@@ -10,10 +11,17 @@ def home():
 def about():
     return render_template('about.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash("login requested for user {}, remember_me={}".format(
+            form.username.data, form.remember_me.data
+        ))
+        return redirect(url_for('home'))
+    return render_template('login.html', title='Sign in', form=form)
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    form = RegistrationForm()
+    return render_template('register.html', title='Sign Up', form=form)
