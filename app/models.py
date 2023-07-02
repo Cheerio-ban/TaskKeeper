@@ -5,9 +5,11 @@ the data for the application.
 
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
+from flask_login import UserMixin
+from app import db, login
 
-class User(db.Model):
+
+class User(db.Model, UserMixin): # UserMixin helps with adding some methods to the db
     """
     A class representing a user in the database using SQLAlchemy
     objects.
@@ -48,3 +50,8 @@ class Task(db.Model):
 
     def __repr__(self):
         return "<Task {}>".format(self.title)
+    
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
