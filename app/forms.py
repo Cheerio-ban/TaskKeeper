@@ -1,5 +1,5 @@
 """
-This module contains objects that handle users registrations and signing in
+This module contains objects that handles users registrations and signing in
 """
 
 
@@ -10,6 +10,8 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 class RegistrationForm(FlaskForm):
     """
     This class represents the registration web form 
+    It gets inputs from the user using wtforms fields.
+    (StringField, PasswordField, SubmitField)
     """
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -20,7 +22,9 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     """
-    This class represents the login web form 
+    This class represents the login web form
+    It gets inputs from the user using wtforms fields.
+    (StringField, PasswordField, SubmitField)
     """
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', validators=[DataRequired()])
