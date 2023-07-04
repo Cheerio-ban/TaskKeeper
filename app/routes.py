@@ -1,14 +1,16 @@
 from flask import url_for, render_template, flash, redirect, request
 from app.forms import RegistrationForm, LoginForm
-from app.models import User
+from app.models import User, Task
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 
 
 @app.route('/')
+@login_required
 def home():
-    return render_template('home.html')
+    tasks = Task.query.all()
+    return render_template('home.html', tasks=tasks)
 
 @app.route('/about')
 def about():
@@ -36,6 +38,8 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -46,7 +50,7 @@ def register():
         new.set_password(form.password.data)
         db.session.add(new)
         db.session.commit()
-        flash('congratulations, you are now a registered user')
+        flash('congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Sign Up', form=form)
 

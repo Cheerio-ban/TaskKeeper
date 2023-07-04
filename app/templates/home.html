@@ -1,4 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if current_user %}
+<h1>Hello, {{ current_user.username }}</h1>
+{% for task in tasks %}
+<div>
+    <p>{{task.body}}</p>
+</div>
+{% endfor %}
+{% else %}
 <h1>Hello, I am task keeper</h1>
+{% endif %}
 {% endblock %}
