@@ -4,7 +4,7 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Task Keeper</title>
+    <title>TaskKeeper 2023</title>
     {% endif %}
     <style>
         ul {
@@ -17,21 +17,29 @@
             text-decoration: none;
         }
     </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
   </head>
   <body>
-    <nav>
-      <ul>
-        <a href="{{ url_for('home') }}"><li>Home</li></a>
-        <a href="{{ url_for('about') }}"><li>About</li></a>
-        {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}"><li>Login</li></a>
-        <a href="{{ url_for('register') }}"><li>Register</li></a>
-        {% else %}
-        <a href="{{ url_for('tasks') }}"><li>Tasks</li></a>
-        <a href="{{ url_for('logout') }}"><li>Logout</li></a>
-        {% endif %}
-      </ul>
-    </nav>
+    <div class="nav-bar">
+      <h2>TASKEEPER</h2>
+      <nav>
+        <ul>
+          <a href="{{ url_for('home') }}"><li>Home</li></a>
+          <a href="{{ url_for('about') }}"><li>About</li></a>
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('login') }}"><li>Login</li></a>
+          <a href="{{ url_for('register') }}"><li>Register</li></a>
+          {% else %}
+          <a href="{{ url_for('tasks') }}"><li>Tasks</li></a>
+          <a href="{{ url_for('logout') }}"><li>Logout</li></a>
+          {% endif %}
+        </ul>
+      </nav>
+      <div class="nav-button">
+        <a href="{{ url_for('home')}}"><button>Contact</button></a>
+      </div>
+    </div>
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>

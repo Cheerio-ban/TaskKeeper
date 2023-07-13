@@ -5,7 +5,7 @@ This module contains objects that handles users registrations and signing in
 
 from flask_wtf import FlaskForm
 from datetime import date
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
@@ -49,9 +49,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class TasksForm(FlaskForm):
-    task_title = StringField('Task TItle', validators=[DataRequired(), Length(max=60)])
-    description = StringField('Description', validators=[DataRequired()])
-    due_date = DateField('Due Date', validators=[DataRequired()], format='%Y-%m-%d')
+    task_title = StringField('Task TItle:', validators=[DataRequired(), Length(max=60)])
+    description = TextAreaField('Description:', validators=[DataRequired()])
+    due_date = DateField('Due Date:', validators=[DataRequired()], format='%Y-%m-%d')
     date_created = DateField('Date Created', validators=[DataRequired()], format='%Y-%m-%d', default=date.today())
     mark_as_completed = BooleanField('Mark as Completed')
     add_task = SubmitField('Add Task')

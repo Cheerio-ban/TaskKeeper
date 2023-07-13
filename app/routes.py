@@ -14,7 +14,7 @@ def home():
         task = Task(title=form.task_title.data, body=form.description.data)
         task.due_date = form.due_date.data
         task.author = current_user
-        # task.mark_as_completed = form.mark_as_completed.data
+        task.mark_as_completed = form.mark_as_completed.data
         db.session.add(task)
         db.session.commit()
         return redirect(url_for('tasks'))

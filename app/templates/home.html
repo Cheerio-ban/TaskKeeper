@@ -1,40 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if current_user %}
-<h1>Hello, {{ current_user.username }}</h1>
 
-<form action="" method="POST" novalidate>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+{% if current_user %}
+<h1>Hello, {{ current_user.username }}!</h1>
+<h3>Go ahead and add tasks</h3>
+
+<form class="my-form" action="" method="POST" novalidate>
 <fieldset>
     {{ form.hidden_tag() }}
     <legend>
         Add Tasks
     </legend>
-    <div>
-        {{ form.task_title.label }}
+    <div class="form-group">
+        <label for="task_title">{{ form.task_title.label }}</label>
         {{ form.task_title() }}<br>
         {% for error in form.task_title.errors %}
             {{ error }}
         {% endfor %}
     </div>
-    <div>
-        {{ form.description.label }}
-        {{ form.description() }}<br>
+    <div class="form-group">
+        <label for="description">{{ form.description.label }}</label>
+        {{ form.description(cols=100, rows=10) }}<br> 
         {% for error in form.description.errors %}
             {{ error }}
         {% endfor %}
     </div>
-    <div>
-        {{ form.due_date.label }}
-        {{ form.due_date() }}<br>
+    <div class="form-group">
+        <label for="due_date">{{ form.due_date.label }}</label>
+        {{ form.due_date(class='due_date') }}<br>
         {% for error in form.due_date.errors %}
             {{ error }}
         {% endfor %}
     </div>
-    <div>
-        <p>{{ form.mark_as_completed() }} {{ form.mark_as_completed.label }}</p>
-    </div>
-    <div>
-        {{ form.add_task() }}<br>
+    <div class="bottom-group">
+        <div class="form-group check-container">
+            <p>{{ form.mark_as_completed(class='mark_as') }} {{ form.mark_as_completed.label }}</p>
+        </div>
+        <div class="form-group">
+            {{ form.add_task(class="submit-btn") }}<br>
+        </div>
     </div>
 </fieldset>
 </form>

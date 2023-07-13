@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background-color: plum;
+}
+
+h1, h3 {
+    margin: 20px 10%;
+}
+
+div.nav-bar {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10%;
+}
