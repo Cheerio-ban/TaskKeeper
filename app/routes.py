@@ -1,16 +1,25 @@
 from flask import url_for, render_template, flash, redirect, request
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, LoginForm, TasksForm
 from app.models import User, Task
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    form = TasksForm()
+    if form.validate_on_submit():
+        task = Task(title=form.task_title.data, body=form.description.data)
+        task.due_date = form.due_date.data
+        task.author = current_user
+        # task.mark_as_completed = form.mark_as_completed.data
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for('tasks'))
     tasks = Task.query.all()
-    return render_template('home.html', tasks=tasks)
+    return render_template('home.html', tasks=tasks, form=form)
 
 @app.route('/about')
 def about():
@@ -57,7 +66,8 @@ def register():
 @app.route('/tasks')
 @login_required
 def tasks():
-    return "Tasks form and tasks goes here"
+    tasks = Task.query.all()
+    return render_template('tasks.html', tasks=tasks)
 
 @app.route('/logout')
 def logout():

@@ -45,7 +45,9 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
     body = db.Column(db.String(200))
+    due_date = db.Column(db.DateTime, index=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    mark_as_completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
