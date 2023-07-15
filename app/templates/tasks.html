@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 {% block content %}
 {% for task in tasks %}
-    <p>{{task.body}}</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css') }}">
+<div class="each-task">
+    <h1> {{ task.title }} </h1>
+    <p class="task-desc"> {{task.body}}</p>
+    <p class="due-date"> Due: {{ task.due_date }}</p>
+    <p class="completed"> {{ 'Completed' if task.mark_as_completed == True else 'Not Completed' }}</p>
+
+</div>
 {% endfor %}
 <!-- <h1>Tasks here.</h1> -->
 {% endblock %}

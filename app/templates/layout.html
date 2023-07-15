@@ -36,7 +36,7 @@
         </ul>
       </nav>
       <div class="nav-button">
-        <a href="{{ url_for('home')}}"><button>Contact</button></a>
+        <a href="{{ url_for('home')}}" class="contact"><button>Contact</button></a>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
     {% if messages %}
     <ul>
         {% for message in messages %}
-            <li>{{ message }}</li>
+            <li class="flash-message">{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}

@@ -66,8 +66,9 @@ def register():
 @app.route('/tasks')
 @login_required
 def tasks():
+    form = TasksForm()
     tasks = Task.query.all()
-    return render_template('tasks.html', tasks=tasks)
+    return render_template('tasks.html', tasks=tasks, form=form)
 
 @app.route('/logout')
 def logout():

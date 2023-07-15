@@ -9,14 +9,40 @@ body {
     background-color: plum;
 }
 
-h1, h3 {
-    margin: 20px 10%;
-}
-
 div.nav-bar {
     display: flex;
     height: 60px;
+    padding: 40px 0;
     align-items: center;
     justify-content: space-between;
     margin: 0 10%;
+}
+
+nav a {
+    color: #101010;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+.flash-message {
+    margin: 20px 10%;
+    width: 80%;
+    padding: 20px;
+    font-size: 20px;
+    background-color: rgba(230, 21, 21, 0.1);
+    color: rgb(239, 8, 8);
+    list-style-type: none;
+}
+
+.contact button {
+    background-color: #af4c53;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2rem;
+    cursor: pointer;
 }

@@ -1,40 +1,41 @@
 {% extends "layout.html" %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
 <div>
-    <form method="POST" action="" novalidate>
+    <form class="register-form" method="POST" action="" novalidate>
         {{ form.hidden_tag() }} <!-- Protects against CSRF attacks -->
         <fieldset>
-            <legend>Register Today</legend>
-        <div>
-            {{ form.username.label }}
+            <legend>Register with us Today</legend>
+        <div class="form-group">
+            {{ form.username.label }}<span>:</span>
             {{ form.username(size=20) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
-        <div>
-            {{ form.email.label }}
+        <div class="form-group">
+            {{ form.email.label }}<span>:</span>
             {{ form.email() }}<br>
             {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
-        <div>
-            {{ form.password.label }}
+        <div class="form-group">
+            {{ form.password.label }}<span>:</span>
             {{ form.password() }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
-        <div>
-            {{ form.confirm_password.label }}
+        <div class="form-group">
+            {{ form.confirm_password.label }}<span>:</span>
             {{ form.confirm_password() }}<br>
             {% for error in form.confirm_password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
         <div>
-            {{ form.submit() }}
+            {{ form.submit(class='reg-submit-btn') }}
         </div>
     </fieldset>
     </form>

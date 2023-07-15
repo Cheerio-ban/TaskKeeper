@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 
 {% if current_user %}
-<h1>Hello, {{ current_user.username }}!</h1>
-<h3>Go ahead and add tasks</h3>
+<h1 class="username">Hello, {{ current_user.username }}!</h1>
+<h3 class="motive">Go ahead and add tasks</h3>
 
 <form class="my-form" action="" method="POST" novalidate>
 <fieldset>

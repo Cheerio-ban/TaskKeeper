@@ -1,0 +1,84 @@
+h1.sign-in {
+    margin: 20px 10%;
+}
+
+form.login-form {
+    margin:5% 10%;
+    padding: 50px;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    
+}
+
+form.login-form fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+form.login-form fieldset legend {
+    font-weight: bold;
+    font-size: 32px;
+    padding: 0 10px;
+    font-style: oblique;
+}
+
+form.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+form.login-form .form-group label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: inline-block;
+    height: 30px;
+}
+
+form.login-form .form-group input {
+    height: 30px;
+    width: 250px;
+    padding: 10px;
+}
+
+form.login-form .form-group input:focus {
+    border: 1px solid red;
+}
+
+form.login-form .form-group.last-child {
+    margin-bottom: 50px;
+}
+
+form.login-form .bottom-group .submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form.login-form .form-group .submit-btn:hover {
+    background-color: #0056b3;
+}
+
+form.login-form .bottom-group label {
+    font-size: 20px;
+}
+
+
+form.login-form .bottom-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10%;
+}
+
+.register {
+    font-size: 20px;
+}
+
+.register > a {
+    font-weight: bold;
+}
