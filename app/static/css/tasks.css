@@ -3,7 +3,16 @@
     margin: 20px 10%;
     padding: 10px 20px;
     /* border-radius: 25px; */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+div.no-task p {
+    background-color: #fff;
+    margin: 20px 10%;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 28px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .each-task > h1 {

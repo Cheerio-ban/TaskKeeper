@@ -1,7 +1,12 @@
-h1.username, h3.motive {
+h1.username {
+    font-size: 45px;
     margin: 20px 10%;
 }
 
+h3.motive {
+    font-size: 26px;
+    margin: 20px 10%;
+}
 
 form.my-form {
     margin:5% 10%;
@@ -25,6 +30,12 @@ form.my-form fieldset legend {
 
 form.my-form .form-group {
     margin-bottom: 20px;
+}
+
+.form-group.title input {
+    width: 785px;
+    height: 30px;
+    margin-left: 12px;
 }
 
 form.my-form .form-group label {
@@ -65,13 +76,20 @@ form.my-form .form-group .submit-btn:hover {
 form.my-form .bottom-group {
     display: flex;
     justify-content: space-between;
+    margin-top: 50px;
     margin: 0 10%;
 } 
 
 form.my-form .check-container .mark_as {
     border: 2px solid black;
-    height: 10px;
-    width: 10px;
+    height: 17px;
+    width: 20px;
+}
+
+form.my-form .check-container .mark_as:checked {
+    border-color: blue;
+    background-color: blue;
+    box-shadow: inset 0 0 4px #fff;
 }
 
 form.my-form .check-container label {
@@ -80,8 +98,4 @@ form.my-form .check-container label {
     height: 24px;
     border-radius: 3px;
     cursor: pointer;
-}
-
-form.my-form .check-container .mark_as:checked {
-    
 }

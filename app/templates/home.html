@@ -13,15 +13,15 @@
     <legend>
         Add Tasks
     </legend>
-    <div class="form-group">
-        <label for="task_title">{{ form.task_title.label }}</label>
+    <div class="form-group title">
+        {{ form.task_title.label }}
         {{ form.task_title() }}<br>
         {% for error in form.task_title.errors %}
             {{ error }}
         {% endfor %}
     </div>
     <div class="form-group">
-        <label for="description">{{ form.description.label }}</label>
+        <label for="description">{{ form.description.label }}</label><br>
         {{ form.description(cols=100, rows=10) }}<br> 
         {% for error in form.description.errors %}
             {{ error }}
@@ -46,12 +46,6 @@
 </form>
 
 
-
-{% for task in tasks %}
-<div>
-    <p>{{task.body}}</p>
-</div>
-{% endfor %}
 {% else %}
 <h1>Hello, I am task keeper</h1>
 {% endif %}

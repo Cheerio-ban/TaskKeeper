@@ -1,7 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
-{% for task in tasks %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css') }}">
+{% if not tasks %}
+<div class="no-task">
+    <p>No tasks yet.</p>
+</div>
+{% endif %}
+{% for task in tasks %}
 <div class="each-task">
     <h1> {{ task.title }} </h1>
     <p class="task-desc"> {{task.body}}</p>

@@ -59,7 +59,7 @@ def register():
         new.set_password(form.password.data)
         db.session.add(new)
         db.session.commit()
-        flash('congratulations, you are now a registered user!')
+        flash('congratulations, you are now a registered user!', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Sign Up', form=form)
 
@@ -67,10 +67,14 @@ def register():
 @login_required
 def tasks():
     form = TasksForm()
-    tasks = Task.query.all()
+    tasks = Task.query.filter_by(author=current_user).all()
     return render_template('tasks.html', tasks=tasks, form=form)
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')

@@ -31,7 +31,7 @@ class RegistrationForm(FlaskForm):
         
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
-        if email:
+        if user:
             raise ValidationError("That email exists")
         
     
@@ -49,7 +49,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class TasksForm(FlaskForm):
-    task_title = StringField('Task TItle:', validators=[DataRequired(), Length(max=60)])
+    task_title = StringField('Task Title:', validators=[DataRequired(), Length(max=60)])
     description = TextAreaField('Description:', validators=[DataRequired()])
     due_date = DateField('Due Date:', validators=[DataRequired()], format='%Y-%m-%d')
     date_created = DateField('Date Created', validators=[DataRequired()], format='%Y-%m-%d', default=date.today())
