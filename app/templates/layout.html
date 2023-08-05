@@ -21,7 +21,7 @@
   </head>
   <body>
     <div class="nav-bar">
-      <h2>TASKEEPER</h2>
+      <a href="{{ url_for('home') }}"><h2>TAS<span>K</span>EEPER</h2></a>
       <nav>
         <ul>
           <a href="{{ url_for('home') }}"><li>Home</li></a>
@@ -40,7 +40,19 @@
       </div>
     </div>
 
-    {% with messages = get_flashed_messages() %}
+
+    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+          <li class="flash-message success">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+
+    {% with messages = get_flashed_messages(category_filter=["error"]) %}
     {% if messages %}
     <ul>
         {% for message in messages %}

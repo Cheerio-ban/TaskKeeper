@@ -35,7 +35,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()  
         if user is None or not user.check_password(form.password.data):
             # If user doesn't get validated.
-            flash('Invalid username or Password')
+            flash('Invalid username or Password', 'error')
             return redirect(url_for('login'))
         # if user gets validated
         login_user(user, remember=form.remember_me.data)
@@ -53,13 +53,13 @@ def register():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
-            flash('User already exist, please login')
+            flash('User already exist, please login', 'error')
             return redirect(url_for('login'))
         new = User(username=form.username.data, email=form.email.data)
         new.set_password(form.password.data)
         db.session.add(new)
         db.session.commit()
-        flash('congratulations, you are now a registered user!', 'success')
+        flash('Congratulations, you are now a registered user!', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Sign Up', form=form)
 

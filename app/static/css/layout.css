@@ -18,6 +18,20 @@ div.nav-bar {
     margin: 0 10%;
 }
 
+.nav-bar a {
+    text-decoration: none;
+}
+
+.nav-bar h2 {
+    font-size: 32px;
+    color: darkgoldenrod;
+}
+
+.nav-bar h2 > span {
+    font-size: 40px;
+    font-family: 'Segoe UI';
+}
+
 nav a {
     color: #101010;
     margin: 0 10px;
@@ -32,6 +46,11 @@ nav a {
     background-color: rgba(230, 21, 21, 0.1);
     color: rgb(239, 8, 8);
     list-style-type: none;
+}
+
+.flash-message.success {
+    background-color: rgba(34, 202, 15, 0.1);
+    color: rgb(36, 218, 36);
 }
 
 .contact button {
