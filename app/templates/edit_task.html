@@ -1,0 +1,65 @@
+{% extends "tasks.html" %}
+{% block additional_content %}
+<div id="edit_cont">
+{% if form %}
+<div id="edit">
+    <p id="nun">Edit task</p>
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <div id="identifier">
+        <p>
+            {{ form.identifier.label }}</p>
+    
+            <ul>
+                {% for subfield in form.identifier %}
+                <li><p>{{ subfield.label }} {{ subfield }}</p></li>
+                {% endfor %}
+            </ul>
+            {% for errors in form.identifier.errors %}
+            <p>{{ errors }}</p>
+            {% endfor %}
+    </div>
+    <div id="val">
+        <p>{{ form.value.label }}</p>
+        <p> {{ form.value(size=40) }}</p>
+        {% for errors in form.value.errors %}
+        <p>{{ errors }}</p>
+        {% endfor %}
+    </div>
+    <div id="btn">
+        {{form.edit_task(class="btn_sub")}}
+    </div>
+    
+</form>
+
+</div>
+{% elif form_edit %}
+<div id="edit" >
+    <p>Task</p>
+    <form action="" method="POST" novalidate>
+        {{ form_edit.hidden_tag() }}
+        <div id="title">
+            <p>{{ form_edit.task_title.label }}</p>
+            <p> {{ form_edit.task_title(size=30, value=task.title)| safe }}</p>
+        </div>
+        <div id="description">
+            <p>{{ form_edit.description.label }}</p>
+            <p>{{ form_edit.description(row=4, cols=30)}}</p>
+        </div>
+        <div id="date">
+            <p> {{form_edit.due_date.label }}</p>
+            <p> {{form_edit.due_date(value=task.due_date)}}</p>
+        </div>
+        <div>
+            <p>{{ form_edit.mark_as_completed(default=task.mark_as_completed) }}</p>
+            <p>{{ form_edit.mark_as_completed.label }}</p>
+        </div>
+        <div >
+            {{ form_edit.add_task(class="btn_sub") }}<br>
+        </div>   
+    </form>
+
+</div>
+{% endif %}
+</div>
+{% endblock %}

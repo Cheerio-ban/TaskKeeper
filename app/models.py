@@ -7,6 +7,7 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import db, login
+import json
 
 
 class User(db.Model, UserMixin): # UserMixin helps with adding some methods to the db
@@ -22,6 +23,8 @@ class User(db.Model, UserMixin): # UserMixin helps with adding some methods to t
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Task', backref='author', lazy='dynamic')
+    task_edit = db.Column(db.String(1000), nullable=True)
+    options_edit = db.Column(db.String(300), nullable=True)
 
     def __repr__(self):
         return "<User {}>".format(self.username)
@@ -53,6 +56,30 @@ class Task(db.Model):
     def __repr__(self):
         return "<Task {}>".format(self.title)
     
+    def _get_task_from_title(self, title):
+        """This is to get the task id using the title"""
+        task = Task.query.filter_by(title=title).first()
+        if task is None:
+            raise ValueError('No task with this name')
+        return task
+
+    def _get_task_from_id(self, id):
+        """This is to get the task from the id"""
+        task = Task.query.filter_by(id=id).first()
+        if task is None:
+            raise ValueError('No task with this name')
+        return task
+
+    def update_task(self, **kwargs):
+        """This is to change th eattribute of the task in question"""
+        for k, v in kwargs.items():
+            if hasattr(Task, k):
+                setattr(self, k, v)
+            else:
+                raise ValueError
+        db.session.commit()
+        return self
+
 
 @login.user_loader
 def load_user(id):

@@ -5,7 +5,7 @@ This module contains objects that handles users registrations and signing in
 
 from flask_wtf import FlaskForm
 from datetime import date
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField, RadioField, IntegerField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
@@ -55,3 +55,32 @@ class TasksForm(FlaskForm):
     date_created = DateField('Date Created', validators=[DataRequired()], format='%Y-%m-%d', default=date.today())
     mark_as_completed = BooleanField('Mark as Completed')
     add_task = SubmitField('Add Task')
+    
+        
+class EditFindTask(FlaskForm):
+    """This is the form for finding th etask to edit"""
+    identifier = RadioField('Identify task by ID or "title"', choices=[('one', 'ID'), ('two', 'Title')], default=1)
+    value = StringField('Input the value', validators=[DataRequired()])
+    edit_task = SubmitField('Edit')
+
+    def _is_convertible_to_integer(self, data):
+        try:
+            int(data)
+            return True
+        except ValueError:
+            return False
+
+    
+    def validate_value(self, field):
+        """validate the value of the value field"""
+        selected = self.identifier.data
+        if selected == "one" and not self._is_convertible_to_integer(field.data):
+            raise ValidationError('The value in the field should be an integer')
+
+class EditTaskForm(FlaskForm):
+    """This is the Edit task form """
+    task_title = StringField('Task Title:', validators=[DataRequired(), Length(max=60)])
+    description = TextAreaField('Description:', validators=[DataRequired()])
+    due_date = DateField('Due Date:', validators=[DataRequired()], format='%Y-%m-%d')
+    mark_as_completed = BooleanField('Mark as Completed')
+    add_task = SubmitField('Save')

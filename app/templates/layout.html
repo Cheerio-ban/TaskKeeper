@@ -21,16 +21,16 @@
   </head>
   <body>
     <div class="nav-bar">
-      <a href="{{ url_for('home') }}"><h2>TAS<span>K</span>EEPER</h2></a>
+      <a href="{{ url_for('home', username=current_user.username) }}"><h2>TAS<span>K</span>EEPER</h2></a>
       <nav>
         <ul>
-          <a href="{{ url_for('home') }}"><li>Home</li></a>
+          <a href="{{ url_for('home', username=current_user.username) }}"><li>Home</li></a>
           <a href="{{ url_for('about') }}"><li>About</li></a>
           {% if current_user.is_anonymous %}
           <a href="{{ url_for('login') }}"><li>Login</li></a>
           <a href="{{ url_for('register') }}"><li>Register</li></a>
           {% else %}
-          <a href="{{ url_for('tasks') }}"><li>Tasks</li></a>
+          <a href="{{ url_for('tasks', username=current_user.username) }}"><li>Tasks</li></a>
           <a href="{{ url_for('logout') }}"><li>Logout</li></a>
           {% endif %}
         </ul>
