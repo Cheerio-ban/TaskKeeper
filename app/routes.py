@@ -84,6 +84,9 @@ def edit_task(username):
             if task is None:
                 flash(f'No task with the title "{form.value.data}"')
                 return redirect(url_for('home', username=current_user.username))
+        if task.author.username != current_user.username:
+            flash(f'No task with the ID "{form.value.data}"')
+            return redirect(url_for('tasks', username=current_user.username))
         current_user.task_edit = str(task.id)
         db.session.commit()
         return redirect(url_for('edit_task_id', username=current_user.username, id=task.id))

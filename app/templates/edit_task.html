@@ -16,18 +16,21 @@
                 {% endfor %}
             </ul>
             {% for errors in form.identifier.errors %}
-            <p>{{ errors }}</p>
+            <p id="err">{{ errors }}</p>
             {% endfor %}
     </div>
     <div id="val">
         <p>{{ form.value.label }}</p>
         <p> {{ form.value(size=40) }}</p>
         {% for errors in form.value.errors %}
-        <p>{{ errors }}</p>
+        <p id="err">{{ errors }}</p>
         {% endfor %}
     </div>
     <div id="btn">
         {{form.edit_task(class="btn_sub")}}
+        <a href="{{ url_for('tasks', username=current_user.username
+        )}}">Cancel</a>
+    
     </div>
     
 </form>
@@ -41,24 +44,35 @@
         <div id="title">
             <p>{{ form_edit.task_title.label }}</p>
             <p> {{ form_edit.task_title(size=30, value=task.title)| safe }}</p>
+            {% for errors in form_edit.task_title.errors %}
+            <p id="err">{{ errors }}</p>
+            {% endfor %}
         </div>
         <div id="description">
             <p>{{ form_edit.description.label }}</p>
             <p>{{ form_edit.description(row=4, cols=30)}}</p>
+            {% for errors in form_edit.description.errors %}
+            <p id="err">{{ errors }}</p>
+            {% endfor %}
         </div>
         <div id="date">
             <p> {{form_edit.due_date.label }}</p>
             <p> {{form_edit.due_date(value=task.due_date)}}</p>
+            {% for errors in form_edit.due_date.errors %}
+            <p id="err">{{ errors }}</p>
+            {% endfor %}
         </div>
         <div>
             <p>{{ form_edit.mark_as_completed(default=task.mark_as_completed) }}</p>
             <p>{{ form_edit.mark_as_completed.label }}</p>
         </div>
         <div >
-            {{ form_edit.add_task(class="btn_sub") }}<br>
+            {{ form_edit.add_task(class="btn_sub") }}
+            <a href="{{ url_for('tasks', username=current_user.username
+            )}}">Cancel</a>
+        
         </div>   
     </form>
-
 </div>
 {% endif %}
 </div>
