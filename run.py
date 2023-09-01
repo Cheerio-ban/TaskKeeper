@@ -6,4 +6,4 @@ def make_shell_context():
     return {'db': db, 'User': User, 'Task': Task}
 
 if __name__ == '__main__':
-    app.run("0.0.0.0", 5050)
+    app.run(debug=True)

@@ -77,15 +77,15 @@ def edit_task(username):
         if form.identifier.data == "one":
             task = Task.query.filter_by(id=int(form.value.data)).first()
             if task is None:
-                flash(f'No task with the ID "{form.value.data}"')
+                flash(f'No task with the ID: {form.value.data}', 'error')
                 return redirect(url_for('tasks', username=current_user.username))
         else:
             task = Task.query.filter_by(title=form.value.data).first()
             if task is None:
-                flash(f'No task with the title "{form.value.data}"')
+                flash(f'No task with the title: {form.value.data}', 'error')
                 return redirect(url_for('home', username=current_user.username))
         if task.author.username != current_user.username:
-            flash(f'No task with the ID "{form.value.data}"')
+            flash(f'No task with the ID: {form.value.data}', 'error')
             return redirect(url_for('tasks', username=current_user.username))
         current_user.task_edit = str(task.id)
         db.session.commit()
