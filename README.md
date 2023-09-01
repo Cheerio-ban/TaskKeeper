@@ -14,6 +14,17 @@ Future iterations of the taskkeeper app would include task status updates and se
 python3 -m venv [name of virtual environment]
 ```
 
+> To activate virtual environment:
+
+```
+On windows, run:
+.\[name of virtual environment]\Scripts\activate
+
+On linux, run:
+source [name of virtual environment]/bin/activate
+```
+
+
 > Then you can go ahead and install Flask and the following extensions.
 
 ```
